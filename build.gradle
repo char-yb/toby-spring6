@@ -24,6 +24,11 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
 spotless {
     java {
         target("**/*.java")
@@ -47,6 +52,3 @@ tasks.register("addGitPreCommitHook", Copy) {
 
 compileJava.dependsOn addGitPreCommitHook
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
