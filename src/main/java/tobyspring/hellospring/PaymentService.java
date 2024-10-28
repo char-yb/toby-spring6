@@ -1,17 +1,19 @@
 package tobyspring.hellospring;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class PaymentService {
 
-    private final SimpleExRateProvider exRateProvider;
+    private final ExRateProvider exRateProvider;
 
     public PaymentService() {
-        this.exRateProvider = new SimpleExRateProvider();
+        this.exRateProvider = new WebApiExRateProvider();
     }
 
-    public Payment prepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount) {
+    public Payment prepare(Long orderId, String currency, BigDecimal foreignCurrencyAmount)
+            throws IOException {
         BigDecimal exRate = exRateProvider.getExRate(currency); // 원화 환율
 
         BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exRate);
