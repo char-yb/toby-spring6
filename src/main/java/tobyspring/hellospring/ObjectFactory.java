@@ -1,6 +1,6 @@
 package tobyspring.hellospring;
 
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 // Bean Factory로 Configuration을 대신하였고,
@@ -10,9 +10,8 @@ import org.springframework.context.annotation.Configuration;
 /*
 @ComponentScan은 @Component 어노테이션이 붙은 클래스를 스캔해서 Bean으로 등록한다.
  */
-@ComponentScan
+// @ComponentScan
 public class ObjectFactory {
-    /*    // Bean은 Spring IoC 컨테이너가 관리하는 객체를 말한다.
     // Component Object 모델
     // 생성과 전달을 담당
     @Bean
@@ -25,5 +24,5 @@ public class ObjectFactory {
     @Bean
     public ExRateProvider exRateProvider() {
         return new SimpleExRateProvider();
-    }*/
+    }
 }

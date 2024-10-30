@@ -3,11 +3,10 @@ package tobyspring.hellospring;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import org.springframework.stereotype.Service;
 
 // 실제로 애플리케이션이 시작될 때 실행되는 Object로 스프링 빈 클래스로 Object가 만들어져 사용
 // 스프링 빈 클래스로 사용하기 위해 @Component 어노테이션을 사용
-@Service // 사실 Service 어노테이션은 @Component 어노테이션을 포함하고 있음
+// @Service // 사실 Service 어노테이션은 @Component 어노테이션을 포함하고 있음
 public class PaymentService {
 
     // IOC 컨테이너가 주입
