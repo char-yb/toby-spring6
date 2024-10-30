@@ -3,6 +3,10 @@ package tobyspring.hellospring;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+// @Component
+// 그러나 @ComponentScan 대상이 둘 이상이면  No qualifying bean of type '클래스' available: expected single
+// matching bean but found 2
+// 이런 에러가 발생한다.
 public class SimpleExRateProvider implements ExRateProvider {
 
     @Override

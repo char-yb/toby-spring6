@@ -8,8 +8,10 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
 
 // 실제로 애플리케이션이 시작될 때 실행되는 Object로 스프링 빈 클래스로 Object가 만들어져 사용
+@Component
 public class WebApiExRateProvider implements ExRateProvider {
     // 의존관계
     @Override
