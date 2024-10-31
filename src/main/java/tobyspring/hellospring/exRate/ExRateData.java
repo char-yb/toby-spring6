@@ -1,4 +1,4 @@
-package tobyspring.hellospring;
+package tobyspring.hellospring.exRate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.math.BigDecimal;

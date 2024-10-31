@@ -1,4 +1,4 @@
-package tobyspring.hellospring;
+package tobyspring.hellospring.exRate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.stream.Collectors;
+import tobyspring.hellospring.payment.ExRateProvider;
 
 // 실제로 애플리케이션이 시작될 때 실행되는 Object로 스프링 빈 클래스로 Object가 만들어져 사용
 // @Component

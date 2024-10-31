@@ -1,7 +1,8 @@
-package tobyspring.hellospring;
+package tobyspring.hellospring.exRate;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import tobyspring.hellospring.payment.ExRateProvider;
 
 // @Component
 // 그러나 @ComponentScan 대상이 둘 이상이면  No qualifying bean of type '클래스' available: expected single

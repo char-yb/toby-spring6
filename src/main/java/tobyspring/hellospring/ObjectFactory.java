@@ -2,6 +2,10 @@ package tobyspring.hellospring;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import tobyspring.hellospring.exRate.CachedExRateProvider;
+import tobyspring.hellospring.exRate.WebApiExRateProvider;
+import tobyspring.hellospring.payment.ExRateProvider;
+import tobyspring.hellospring.payment.PaymentService;
 
 // Bean Factory로 Configuration을 대신하였고,
 // 구성정보를 등록하기 위해 Configuration을 사용
