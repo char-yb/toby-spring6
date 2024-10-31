@@ -2,12 +2,13 @@ package tobyspring.hellospring;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.concurrent.TimeUnit;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class PaymentClient {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         BeanFactory beanFactory =
                 new AnnotationConfigApplicationContext(
                         ObjectFactory.class); // 구성 정보를 BeanFactory가 사용할 수 있도록 전달
@@ -24,15 +25,29 @@ public class PaymentClient {
         // 왜지? -> ObjectFactory에 @Bean을 사용하여 객체를 생성하고 관리하기 때문에 같다.
         // 핵심. Spring Bean은 기본적으로 싱글톤이다.
         // Spring은 기본적으로 싱글톤 레지스트리로 동작하게 되어있다.
-        ObjectFactory objectFactory = beanFactory.getBean(ObjectFactory.class);
-        PaymentService paymentService1 = objectFactory.paymentService();
-        PaymentService paymentService2 = objectFactory.paymentService();
-        System.out.println(paymentService1);
-        System.out.println(paymentService2);
-        System.out.println(paymentService1 == paymentService2);
-        System.out.println(paymentService1.equals(paymentService2));
+        // ObjectFactory objectFactory = beanFactory.getBean(ObjectFactory.class);
+        // PaymentService paymentService1 = objectFactory.paymentService();
+        // PaymentService paymentService2 = objectFactory.paymentService();
+        // System.out.println(paymentService1);
+        // System.out.println(paymentService2);
+        // System.out.println(paymentService1 == paymentService2);
+        // System.out.println(paymentService1.equals(paymentService2));
 
-        Payment payment = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
-        System.out.println(payment);
+        Payment payment1 = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
+        System.out.println("Payment1: " + payment1);
+
+        TimeUnit.SECONDS.sleep(1);
+
+        System.out.println("--------------------------------------");
+        // API 호출이나 캐시 업데이트가 일어나지 않고, 이미 저장된 캐시의 값을 호출
+        Payment payment2 = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
+        System.out.println("Payment2: " + payment2);
+
+        TimeUnit.SECONDS.sleep(3);
+
+        System.out.println("--------------------------------------");
+        // 캐시의 특성상 TTL이 필요하다.
+        Payment payment3 = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
+        System.out.println("Payment3: " + payment3);
     }
 }

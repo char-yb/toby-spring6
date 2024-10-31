@@ -24,6 +24,10 @@ public class WebApiExRateProvider implements ExRateProvider {
         ObjectMapper mapper = new ObjectMapper();
         ExRateData data = mapper.readValue(response, ExRateData.class);
 
+        System.out.println("API ExRate: " + data.rates().get("KRW"));
+
         return data.rates().get("KRW");
     }
 }
+
+/** 데코레이터 디자인 패턴 오브젝트에 부가적인 기능/책임을 동적으로 부여한다. */
