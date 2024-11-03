@@ -2,7 +2,6 @@ package tobyspring.hellospring;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import tobyspring.hellospring.exRate.CachedExRateProvider;
 import tobyspring.hellospring.exRate.WebApiExRateProvider;
 import tobyspring.hellospring.payment.ExRateProvider;
 import tobyspring.hellospring.payment.PaymentService;
@@ -20,15 +19,15 @@ public class ObjectFactory {
     // 생성과 전달을 담당
     @Bean
     public PaymentService paymentService() {
-        return new PaymentService(cachedExRateProvider());
+        return new PaymentService(exRateProvider());
     }
 
     // 생성 담당
     // private 접근 제어자로 생성된 객체는 Bean으로 등록할 수가 없다.
-    @Bean
+    /*@Bean
     public ExRateProvider cachedExRateProvider() {
         return new CachedExRateProvider(exRateProvider());
-    }
+    }*/
 
     @Bean
     public ExRateProvider exRateProvider() {
