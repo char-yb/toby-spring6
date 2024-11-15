@@ -12,7 +12,7 @@ public class PaymentClient {
     public static void main(String[] args) throws IOException {
         BeanFactory beanFactory =
                 new AnnotationConfigApplicationContext(
-                        ObjectFactory.class); // 구성 정보를 BeanFactory가 사용할 수 있도록 전달
+                        PaymentConfig.class); // 구성 정보를 BeanFactory가 사용할 수 있도록 전달
         // PaymentService의 제어권을 BeanFactory에게 넘겨주었다.
         PaymentService paymentService = beanFactory.getBean(PaymentService.class);
 

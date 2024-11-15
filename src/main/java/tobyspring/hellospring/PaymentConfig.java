@@ -1,10 +1,10 @@
 package tobyspring.hellospring;
 
-import java.math.BigDecimal;
+import java.time.Clock;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import tobyspring.hellospring.exRate.WebApiExRateProvider;
 import tobyspring.hellospring.payment.ExRateProvider;
-import tobyspring.hellospring.payment.ExRateProviderStub;
 import tobyspring.hellospring.payment.PaymentService;
 
 // Bean Factory로 Configuration을 대신하였고,
@@ -15,12 +15,12 @@ import tobyspring.hellospring.payment.PaymentService;
 @ComponentScan은 @Component 어노테이션이 붙은 클래스를 스캔해서 Bean으로 등록한다.
  */
 // @ComponentScan
-public class TestObjectFactory {
+public class PaymentConfig {
     // Component Object 모델
     // 생성과 전달을 담당
     @Bean
     public PaymentService paymentService() {
-        return new PaymentService(exRateProvider());
+        return new PaymentService(exRateProvider(), clock());
     }
 
     // 생성 담당
@@ -32,6 +32,12 @@ public class TestObjectFactory {
 
     @Bean
     public ExRateProvider exRateProvider() {
-        return new ExRateProviderStub(BigDecimal.valueOf(1_000));
+        return new WebApiExRateProvider();
+    }
+
+    // 현재 시간을 가리키는 Clock 객체를 생성
+    @Bean
+    public Clock clock() {
+        return Clock.systemDefaultZone();
     }
 }
