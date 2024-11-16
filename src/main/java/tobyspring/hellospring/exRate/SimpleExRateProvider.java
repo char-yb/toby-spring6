@@ -1,6 +1,5 @@
 package tobyspring.hellospring.exRate;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import tobyspring.hellospring.payment.ExRateProvider;
 
@@ -11,7 +10,7 @@ import tobyspring.hellospring.payment.ExRateProvider;
 public class SimpleExRateProvider implements ExRateProvider {
 
     @Override
-    public BigDecimal getExRate(String currency) throws IOException {
+    public BigDecimal getExRate(String currency) {
         if (currency.equals("USD")) return BigDecimal.valueOf(1200);
         throw new IllegalArgumentException("지원되지 않는 통화: " + currency);
     }

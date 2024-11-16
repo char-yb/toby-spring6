@@ -29,7 +29,7 @@ class PaymentServiceTest {
     }
 
     @Test
-    void validUntil() throws IOException {
+    void validUntil() {
         PaymentService paymentService =
                 new PaymentService(new ExRateProviderStub(BigDecimal.valueOf(1_000)), clock);
         Payment payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
@@ -42,8 +42,7 @@ class PaymentServiceTest {
     }
 
     // Stub을 사용하면 외부 API를 사용할 필요없고, 인터넷이 끊겨도 테스트에 대한 검증이 가능하다.
-    private static void testAmount(BigDecimal exRate, BigDecimal amount, Clock clock)
-            throws IOException {
+    private static void testAmount(BigDecimal exRate, BigDecimal amount, Clock clock) {
         PaymentService paymentService = new PaymentService(new ExRateProviderStub(exRate), clock);
 
         Payment payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);

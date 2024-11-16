@@ -2,7 +2,6 @@ package tobyspring.hellospring.payment;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.LocalDateTime;
@@ -24,7 +23,7 @@ class PaymentServiceSpringTest {
     @Autowired ExRateProviderStub exRateProviderStub;
 
     @Test
-    void convertedAmount() throws IOException {
+    void convertedAmount() {
         // Stub에 기본적으로 세팅한 값으로 사용
         Payment payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
 
@@ -51,7 +50,7 @@ class PaymentServiceSpringTest {
     }
 
     @Test
-    void validUntil() throws IOException {
+    void validUntil() {
         Payment payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
 
         // valid until이 prepare() 메소드에서 30분 뒤로 설정되었기 때문에 30분 뒤의 시간을 비교한다.
