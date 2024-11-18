@@ -19,6 +19,11 @@ public class WebApiExRateProvider implements ExRateProvider {
     @Override
     public BigDecimal getExRate(String currency) {
         String url = "https://open.er-api.com/v6/latest/" + currency;
+        return runApiForExRate(url);
+    }
+
+    // api 서비스가 바뀌어도 로직 내부는 변함없이 사용할 수 있다. (고정 틀 같은 개념)
+    private static BigDecimal runApiForExRate(String url) {
         URI uri;
         try {
             uri = new URI(url); // 21부터는 URL가 아닌 URI를 사용
