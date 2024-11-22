@@ -59,6 +59,25 @@ public class Payment {
         this.validUntil = validUntil;
     }
 
+    @Override
+    public String toString() {
+        return "Payment{"
+                + "orderId="
+                + orderId
+                + ", currency='"
+                + currency
+                + '\''
+                + ", amount="
+                + amount
+                + ", exRate="
+                + exRate
+                + ", convertedAmount="
+                + convertedAmount
+                + ", validUntil="
+                + validUntil
+                + '}';
+    }
+
     public static Payment createPrepared(
             Long orderId,
             String currency,
