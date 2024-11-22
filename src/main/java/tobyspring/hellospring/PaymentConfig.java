@@ -3,6 +3,9 @@ package tobyspring.hellospring;
 import java.time.Clock;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import tobyspring.hellospring.api.ApiExRateExtractor;
+import tobyspring.hellospring.api.ApiTemplate;
+import tobyspring.hellospring.api.SimpleApiExecutor;
 import tobyspring.hellospring.exRate.WebApiExRateProvider;
 import tobyspring.hellospring.payment.ExRateProvider;
 import tobyspring.hellospring.payment.PaymentService;
@@ -31,8 +34,13 @@ public class PaymentConfig {
     }*/
 
     @Bean
+    public ApiTemplate apiTemplate() {
+        return new ApiTemplate(new SimpleApiExecutor(), new ApiExRateExtractor());
+    }
+
+    @Bean
     public ExRateProvider exRateProvider() {
-        return new WebApiExRateProvider();
+        return new WebApiExRateProvider(apiTemplate());
     }
 
     // 현재 시간을 가리키는 Clock 객체를 생성
