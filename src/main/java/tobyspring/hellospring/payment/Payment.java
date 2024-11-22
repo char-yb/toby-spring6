@@ -74,25 +74,6 @@ public class Payment {
                 now.plusMinutes(30));
     }
 
-    @Override
-    public String toString() {
-        return "Payment{"
-                + "orderId="
-                + orderId
-                + ", currency='"
-                + currency
-                + '\''
-                + ", amount="
-                + amount
-                + ", exRate="
-                + exRate
-                + ", convertedAmount="
-                + convertedAmount
-                + ", validUntil="
-                + validUntil
-                + '}';
-    }
-
     public boolean isValidClock(Clock clock) {
         return LocalDateTime.now(clock).isBefore(this.validUntil);
     }

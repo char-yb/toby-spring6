@@ -4,8 +4,9 @@ import java.math.BigDecimal;
 import tobyspring.hellospring.api.ApiTemplate;
 import tobyspring.hellospring.payment.ExRateProvider;
 
+// 데코레이터 디자인 패턴 오브젝트에 부가적인 기능/책임을 동적으로 부여한다.
+
 // 실제로 애플리케이션이 시작될 때 실행되는 Object로 스프링 빈 클래스로 Object가 만들어져 사용
-// @Component
 public class WebApiExRateProvider implements ExRateProvider {
     private final ApiTemplate apiTemplate;
 
@@ -22,5 +23,3 @@ public class WebApiExRateProvider implements ExRateProvider {
         return apiTemplate.getForExRate(url);
     }
 }
-
-/* 데코레이터 디자인 패턴 오브젝트에 부가적인 기능/책임을 동적으로 부여한다. */
