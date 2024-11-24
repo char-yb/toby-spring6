@@ -1,20 +1,14 @@
 package tobyspring.hellospring.data;
 
-import jakarta.persistence.EntityManagerFactory;
-import org.springframework.stereotype.Repository;
-import tobyspring.hellospring.DataTemplate;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import tobyspring.hellospring.order.Order;
 
-@Repository
 public class OrderRepository {
 
-    private final DataTemplate dataTemplate;
-
-    public OrderRepository(EntityManagerFactory emf) {
-        this.dataTemplate = new DataTemplate(emf);
-    }
+    @PersistenceContext private EntityManager em;
 
     public void save(Order order) {
-        dataTemplate.save(order);
+        em.persist(order);
     }
 }

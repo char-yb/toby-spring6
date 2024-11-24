@@ -3,6 +3,9 @@ package tobyspring.hellospring;
 import java.math.BigDecimal;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
 import tobyspring.hellospring.data.OrderRepository;
 import tobyspring.hellospring.order.Order;
 
@@ -12,12 +15,24 @@ public class DataClient {
         BeanFactory beanFactory = new AnnotationConfigApplicationContext(DataConfig.class);
         // DataTemplate dataTemplate = beanFactory.getBean(DataTemplate.class);
         OrderRepository orderRepository = beanFactory.getBean(OrderRepository.class);
+        JpaTransactionManager transactionManager = beanFactory.getBean(JpaTransactionManager.class);
 
-        Order order = new Order("100", BigDecimal.TEN);
-        orderRepository.save(order);
-        System.out.println(order);
+        try {
+            new TransactionTemplate(transactionManager)
+                    .execute(
+                            status -> {
+                                // transaction begin
+                                Order order = new Order("100", BigDecimal.TEN);
+                                orderRepository.save(order);
 
-        // Order order2 = new Order("100", BigDecimal.ONE);
-        // orderRepository.save(order2);
+                                System.out.println(order);
+
+                                Order order2 = new Order("100", BigDecimal.ONE);
+                                orderRepository.save(order2);
+                                return null;
+                            });
+        } catch (DataIntegrityViolationException e) {
+            System.out.println("주문번호 중복 복구 작업");
+        }
     }
 }
